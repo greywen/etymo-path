@@ -1,0 +1,36 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model words {
+    id    Int    @id @default(autoincrement())
+    value String @unique @db.VarChar(50)
+
+    ipa        String   @db.VarChar(50)
+    split_word String[] @default([])
+    split_ipa  String[] @default([])
+
+    br_ipa        String   @db.VarChar(50)
+    br_split_word String[] @default([])
+    br_split_ipa  String[] @default([])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model ipas {
+    id       Int     @id @default(autoincrement())
+    value    String  @unique @db.VarChar(50)
+    audio    String
+    br_audio String?
+    video    String?
+    br_video String?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
