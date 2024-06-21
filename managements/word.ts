@@ -4,6 +4,6 @@ export default class WordManagement {
   static create() {}
 
   static async findByName(name: string) {
-    return await prisma.words.findFirst({ where: { value: name } });
+    return await prisma.word.findFirst({ where: { value: name } });
   }
 }
